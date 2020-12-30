@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: eyebeam-biz-tls
+spec:
+  secretName: eyebeam-biz
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: eyebeam.biz
+  dnsNames:
+    - eyebeam.biz
+    - www.eyebeam.biz
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - eyebeam.biz
+          - www.eyebeam.biz
